@@ -1,5 +1,6 @@
 package com.byvoid.lib.utils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * @author melody
@@ -26,8 +28,9 @@ public class AppUtils {
         installApkIntent.addCategory(Intent.CATEGORY_DEFAULT);
         installApkIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+        String appPackageName = getAppPackageName(context);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            installApkIntent.setDataAndType(FileProvider.getUriForFile(context, "com.byvoid.wanangushi.file_provider", apkFile), "application/vnd.android.package-archive");
+            installApkIntent.setDataAndType(FileProvider.getUriForFile(context, appPackageName + ".file_provider", apkFile), "application/vnd.android.package-archive");
             installApkIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             installApkIntent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
@@ -37,5 +40,28 @@ public class AppUtils {
             context.startActivity(installApkIntent);
         }
     }
+
+
+    /**
+     * 获取当前应用包名
+     * @param context 上下文
+     * @return 当前应用包名
+     */
+    public static String getAppPackageName(Context context) {
+        int pid = android.os.Process.myPid();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        if (activityManager != null){
+            List<ActivityManager.RunningAppProcessInfo> processInfoList = activityManager.getRunningAppProcesses();
+            for (ActivityManager.RunningAppProcessInfo processInfo : processInfoList) {
+                if (processInfo.pid == pid){
+                    return processInfo.processName;
+                }
+            }
+        }
+        return "";
+    }
+
+
+
 
 }
