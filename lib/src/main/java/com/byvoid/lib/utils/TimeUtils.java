@@ -15,19 +15,19 @@ public class TimeUtils {
     /**
      * 一秒包含的毫秒数
      */
-    private final static long MILLIS_PER_SECOND = 1000;
+    public final static long MILLIS_PER_SECOND = 1000;
     /**
      * 一分钟的毫秒数
      */
-    private final static long MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60;
+    public final static long MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60;
     /**
      * 一小时的毫秒数
      */
-    private final static long MILLIS_PER_HOUR = MILLIS_PER_MINUTE * 60;
+    public final static long MILLIS_PER_HOUR = MILLIS_PER_MINUTE * 60;
     /**
      * 一天包含的毫秒数
      */
-    private final static long MILLIS_PER_DAY = MILLIS_PER_HOUR * 24;
+    public final static long MILLIS_PER_DAY = MILLIS_PER_HOUR * 24;
 
 
     /**
