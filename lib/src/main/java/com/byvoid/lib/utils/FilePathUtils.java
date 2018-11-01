@@ -9,7 +9,7 @@ import java.io.File;
  * @author melody
  * @date 2018/3/28
  */
-public class FilePathManager {
+public class FilePathUtils {
 
 
     /**
