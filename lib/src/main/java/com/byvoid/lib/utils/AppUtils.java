@@ -30,7 +30,7 @@ public class AppUtils {
 
         String appPackageName = getAppPackageName(context);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            installApkIntent.setDataAndType(FileProvider.getUriForFile(context, appPackageName + ".file_provider", apkFile), "application/vnd.android.package-archive");
+            installApkIntent.setDataAndType(FileProvider.getUriForFile(context, appPackageName + ".android7.fileProvider", apkFile), "application/vnd.android.package-archive");
             installApkIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             installApkIntent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
