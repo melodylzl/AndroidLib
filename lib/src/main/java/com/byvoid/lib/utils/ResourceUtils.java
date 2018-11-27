@@ -1,8 +1,10 @@
 package com.byvoid.lib.utils;
 
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 
@@ -26,6 +28,11 @@ public class ResourceUtils {
         return ContextCompat.getDrawable(AndroidLib.getApplication(),resId);
     }
 
+    public static Drawable getDrawable(@NonNull String drawableName){
+        Resources resources = AndroidLib.getApplication().getResources();
+        int resId = resources.getIdentifier(drawableName,"drawable",AndroidLib.getApplication().getPackageName());
+        return getDrawable(resId);
+    }
 
 
 }
